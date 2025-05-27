@@ -7,10 +7,10 @@ Can be used to test infrastructure code locally.
 ## Usage
 
 
-### 1. Create an `applications.yaml` configuration file
+### 1. Configure the `applications.yaml` file
 
 ```shell
-wget -q https://github.com/nedix/k3s-argocd-container/applications.yaml.example -O applications.yaml
+wget -O applications.yaml https://github.com/nedix/k3s-argocd-container/applications.yaml.example
 ```
 
 
