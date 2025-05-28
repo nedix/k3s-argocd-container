@@ -7,7 +7,7 @@ Can be used to test infrastructure code locally.
 ## Usage
 
 
-### 1. Configure the `applications.yaml` file
+### 1. Configure your Helm and Kustomize applications
 
 ```shell
 wget -O applications.yaml https://github.com/nedix/k3s-argocd-container/applications.yaml.example
