@@ -19,7 +19,7 @@ wget -O applications.yaml https://github.com/nedix/k3s-argocd-container/applicat
 ```shell
 docker run --rm --pull always --name k8sage \
     -v ${PWD}/applications:/etc/k8sage/repositories/argocd-example-apps/ \
-		--mount="type=bind,source=${PWD}/applications.yaml,target=/etc/k8sage/repositories/config/applications.yaml" \
+    --mount="type=bind,source=${PWD}/applications.yaml,target=/etc/k8sage/repositories/config/applications.yaml" \
     nedix/k3s-argocd
 ```
 
