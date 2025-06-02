@@ -18,13 +18,13 @@ wget -O applications.yaml https://github.com/nedix/k3s-argocd-container/applicat
 
 ```shell
 docker run --rm -d --name k8sage \
-		--privileged \
-		--cgroupns="host" \
-		--mount="type=bind,source=${PWD}/applications.yaml,target=/etc/k8sage/repositories/config/applications.yaml" \
-		-p 127.0.0.1:80:80 \
-		-p 127.0.0.1:443:443 \
-		-p 127.0.0.1:6443:6443 \
-		nedix/k8sage
+    --privileged \
+    --cgroupns="host" \
+    --mount="type=bind,source=${PWD}/applications.yaml,target=/etc/k8sage/repositories/config/applications.yaml" \
+    -p 127.0.0.1:80:80 \
+    -p 127.0.0.1:443:443 \
+    -p 127.0.0.1:6443:6443 \
+    nedix/k8sage
 ```
 
 
