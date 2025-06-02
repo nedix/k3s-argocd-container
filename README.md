@@ -28,7 +28,7 @@ docker run --rm -d --name k8sage \
 ```
 
 
-### 3a. Access Kubernetes config
+### 3a. Access Kubernetes API
 
 Copy Kubernetes config to your host
 
