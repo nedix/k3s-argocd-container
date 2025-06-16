@@ -4,9 +4,16 @@
   ],
   customManagers: [
     {
+      depNameTemplate: "Alpine",
+      fileMatch: ["^Containerfile$"],
+      matchStrings: ["ARG ALPINE_VERSION=(?<currentValue>.*?)\\n"],
+      datasourceTemplate: "docker",
+      packageNameTemplate: "alpine",
+    },
+    {
       depNameTemplate: "Argo CD",
       fileMatch: ["^Containerfile$"],
-      matchStrings: ["ARG ARGOCD_VERSION=(?<currentValue>.*?)\\n"],
+      matchStrings: ["ARG ARGO_CD_VERSION=(?<currentValue>.*?)\\n"],
       datasourceTemplate: "github-releases",
       packageNameTemplate: "argoproj/argo-cd"
     },
@@ -18,6 +25,13 @@
       packageNameTemplate: "helm/helm"
     },
     {
+      depNameTemplate: "K3s",
+      fileMatch: ["^Containerfile$"],
+      matchStrings: ["ARG K3S_VERSION=(?<currentValue>.*?)\\n"],
+      datasourceTemplate: "docker",
+      packageNameTemplate: "rancher/k3s"
+    },
+    {
       depNameTemplate: "Kfilt",
       fileMatch: ["^Containerfile$"],
       matchStrings: ["ARG KFILT_VERSION=(?<currentValue>.*?)\\n"],
@@ -25,11 +39,26 @@
       packageNameTemplate: "ryane/kfilt"
     },
     {
+      depNameTemplate: "Kubectl",
+      fileMatch: ["^Containerfile$"],
+      matchStrings: ["ARG KUBECTL_VERSION=(?<currentValue>.*?)\\n"],
+      datasourceTemplate: "docker",
+      packageNameTemplate: "kubectl",
+      registryUrlTemplate: "https://registry.k8s.io",
+    },
+    {
       depNameTemplate: "Kustomize",
       fileMatch: ["^Containerfile$"],
       matchStrings: ["ARG KUSTOMIZE_VERSION=(?<currentValue>.*?)\\n"],
       datasourceTemplate: "github-releases",
-      packageNameTemplate: "kubernetes-sigs/kustomize"
+      packageNameTemplate: "kubernetes-sigs/kustomize",
+    },
+    {
+      depNameTemplate: "s6-overlay",
+      fileMatch: ["^Containerfile$"],
+      matchStrings: ["ARG S6_OVERLAY_VERSION=(?<currentValue>.*?)\\n"],
+      datasourceTemplate: "github-tags",
+      packageNameTemplate: "just-containers/s6-overlay",
     },
   ],
   packageRules: [
@@ -42,6 +71,22 @@
       description: "Custom versioning for Kustomize",
       matchPackageNames: ["kubernetes-sigs/kustomize"],
       extractVersion: "^v(?<version>.*)$",
+    },
+    {
+      description: "Custom versioning for K3s",
+      matchPackageNames: ["rancher/k3s"],
+      extractVersion: "^v(?<version>.*)-k3s1$",
+    },
+    {
+      description: "Custom versioning for Kubectl",
+      matchPackageNames: ["kubectl"],
+      extractVersion: "^v(?<version>.*)$",
+    },
+    {
+      description: "Custom versioning for s6-overlay",
+      matchPackageNames: ["just-containers/s6-overlay"],
+      extractVersion: "^v(?<version>.*)$",
+      versioning: "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)\\.(?<build>\\d+)$",
     },
   ],
 }

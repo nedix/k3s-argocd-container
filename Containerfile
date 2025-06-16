@@ -1,5 +1,5 @@
 ARG ALPINE_VERSION=3.20
-ARG ARGOCD_VERSION=3.0.6
+ARG ARGO_CD_VERSION=3.0.6
 ARG HELM_VERSION=3.18.2
 ARG K3S_VERSION=1.32.2
 ARG KFILT_VERSION=0.0.8
@@ -9,7 +9,7 @@ ARG S6_OVERLAY_VERSION=3.2.0.0
 
 FROM alpine:${ALPINE_VERSION}
 
-ARG ARGOCD_VERSION
+ARG ARGO_CD_VERSION
 ARG HELM_VERSION
 ARG K3S_VERSION
 ARG KFILT_VERSION
@@ -42,7 +42,7 @@ RUN apk add --virtual .build-deps \
     | tar -xpJf- -C / \
     && curl -fsSL "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_OVERLAY_ARCHITECTURE}.tar.xz" \
     | tar -xpJf- -C / \
-    && curl -fsSL "https://github.com/argoproj/argo-cd/releases/download/v${ARGOCD_VERSION}/argocd-linux-${ARCHITECTURE}" \
+    && curl -fsSL "https://github.com/argoproj/argo-cd/releases/download/v${ARGO_CD_VERSION}/argocd-linux-${ARCHITECTURE}" \
         -o /usr/local/bin/argocd \
     && curl -fsSL "https://get.helm.sh/helm-v${HELM_VERSION}-linux-${ARCHITECTURE}.tar.gz" \
     | tar xzOf - linux-${ARCHITECTURE}/helm > /usr/local/bin/helm \
