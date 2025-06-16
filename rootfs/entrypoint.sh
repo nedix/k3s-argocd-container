@@ -10,5 +10,5 @@ exec env -i \
     K3S_VERSION="$K3S_VERSION" \
     KUBECONFIG="/root/.kube/config" \
     PATH="/usr/local/bin/:${PATH}" \
-    S6_STAGE2_HOOK="/usr/sbin/s6-stage2-hook" \
+    S6_STAGE2_HOOK="/usr/bin/s6-stage2-hook" \
     /init
