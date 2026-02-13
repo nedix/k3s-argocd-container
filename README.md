@@ -1,7 +1,7 @@
-# [k3s-argocd-container][project] a.k.a. k8sage
+# [k8sage a.k.a. k3s-argocd-container][project]
 
-Kubernetes with Argo CD inside a container.
-Can be used to test infrastructure code locally.
+Kubernetes with Argo CD using containers.
+Enables running infrastructure code locally for developers.
 
 
 ## Usage
@@ -18,15 +18,14 @@ wget -O applications.yaml https://github.com/nedix/k3s-argocd-container/applicat
 
 ```shell
 docker run \
-    --cgroupns="host" \
-    --mount="type=bind,source=${PWD}/applications.yaml,target=/etc/k8sage/repositories/config/applications.yaml" \
+    --cgroupns host \
+    --mount "type=bind,source=${PWD}/applications.yaml,target=/etc/k8sage/repositories/config/applications.yaml" \
     --name k8sage \
     --privileged \
     --rm \
     -p 127.0.0.1:80:80 \
     -p 127.0.0.1:443:443 \
     -p 127.0.0.1:6443:6443 \
-    -d \
     nedix/k8sage
 ```
 

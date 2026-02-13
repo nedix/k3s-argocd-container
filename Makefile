@@ -10,8 +10,8 @@ up: HTTPS_PORT = "443"
 up: API_PORT   = "6443"
 up:
 	@docker run \
-		--cgroupns="host" \
-		--mount="type=bind,source=$(CURDIR)/applications.yaml,target=/etc/k8sage/repositories/config/applications.yaml" \
+		--cgroupns host \
+		--mount "type=bind,source=$(CURDIR)/applications.yaml,target=/etc/k8sage/repositories/config/applications.yaml" \
 		--name k8sage \
 		--privileged \
 		--rm \
