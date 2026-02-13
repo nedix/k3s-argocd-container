@@ -9,13 +9,16 @@ up: HTTP_PORT  = "80"
 up: HTTPS_PORT = "443"
 up: API_PORT   = "6443"
 up:
-	@docker run --rm -d --name k8sage \
-		--privileged \
+	@docker run \
 		--cgroupns="host" \
 		--mount="type=bind,source=$(CURDIR)/applications.yaml,target=/etc/k8sage/repositories/config/applications.yaml" \
+		--name k8sage \
+		--privileged \
+		--rm \
 		-p 127.0.0.1:$(HTTP_PORT):80 \
 		-p 127.0.0.1:$(HTTPS_PORT):443 \
 		-p 127.0.0.1:$(API_PORT):6443 \
+		-d \
 		k8sage
 	@{ \
 		trap "kill $$LOG_PID" INT EXIT; \
