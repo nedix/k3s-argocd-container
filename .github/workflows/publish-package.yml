@@ -19,7 +19,6 @@ jobs:
         name: Publish package
         uses: nedix/actions/publish-package@main
         with:
-          enable_docker_hub_information: 'true'
           registry: ${{ secrets.REGISTRY_DOMAIN || 'ghcr.io' }}
           registry_path: ${{ secrets.REGISTRY_PATH || github.repository }}
           registry_username: ${{ secrets.REGISTRY_USERNAME || github.actor }}
