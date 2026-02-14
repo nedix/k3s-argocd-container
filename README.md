@@ -1,4 +1,4 @@
-# [k8sage a.k.a. k3s-argocd-container][project]
+# [k8sage][project] a.k.a. k3s-argocd-container
 
 Kubernetes with Argo CD using containers.
 Enables running infrastructure code locally for developers.
