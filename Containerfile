@@ -48,7 +48,7 @@ RUN apk add --virtual .build-deps \
     | tar xzOf - linux-${ARCHITECTURE}/helm > /usr/local/bin/helm \
     && curl -fsSL "https://github.com/ryane/kfilt/releases/download/v${KFILT_VERSION}/kfilt_${KFILT_VERSION}_linux_${ARCHITECTURE}" \
         -o /usr/local/bin/kfilt \
-    && curl -fsSL https://dl.k8s.io/v${KUBECTL_VERSION}/kubernetes-client-linux-${ARCHITECTURE}.tar.gz \
+    && curl -fsSL "https://dl.k8s.io/v${KUBECTL_VERSION}/kubernetes-client-linux-${ARCHITECTURE}.tar.gz" \
     | tar xzOf - kubernetes/client/bin/kubectl > /usr/local/bin/kubectl \
     && curl -fsSL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_${ARCHITECTURE}.tar.gz" \
     | tar xzOf - kustomize > /usr/local/bin/kustomize \
@@ -69,13 +69,13 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 HEALTHCHECK CMD kubectl get --raw="/readyz?verbose"
 
-# HTTP
+# Argo CD HTTP
 EXPOSE 80
 
-# HTTPS
+# ARGO CD HTTPS
 EXPOSE 443
 
-# API
+# KUBERNETES API
 EXPOSE 6443
 
 VOLUME /var/lib/docker
