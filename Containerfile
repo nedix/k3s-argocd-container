@@ -75,7 +75,7 @@ EXPOSE 80
 # ARGO CD HTTPS
 EXPOSE 443
 
-# KUBERNETES API
+# Kubernetes API
 EXPOSE 6443
 
 VOLUME /var/lib/docker
