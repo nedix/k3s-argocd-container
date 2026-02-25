@@ -46,7 +46,7 @@ RUN apk add --virtual .build-deps \
         -o /usr/local/bin/argocd \
     && curl -fsSL "https://get.helm.sh/helm-v${HELM_VERSION}-linux-${ARCHITECTURE}.tar.gz" \
     | tar xzOf - linux-${ARCHITECTURE}/helm > /usr/local/bin/helm \
-    && curl -fsSL "https://github.com/ryane/kfilt/releases/download/v${KFILT_VERSION}/kfilt_${KFILT_VERSION}_linux_${ARCHITECTURE}" \
+    && curl -fsSL "https://github.com/ryane/kfilt/releases/download/v${KFILT_VERSION}/kfilt_linux_${ARCHITECTURE}" \
         -o /usr/local/bin/kfilt \
     && curl -fsSL "https://dl.k8s.io/v${KUBECTL_VERSION}/kubernetes-client-linux-${ARCHITECTURE}.tar.gz" \
     | tar xzOf - kubernetes/client/bin/kubectl > /usr/local/bin/kubectl \
