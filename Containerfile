@@ -2,7 +2,7 @@ ARG ALPINE_VERSION=3.23
 ARG ARGO_CD_VERSION=3.3.2
 ARG HELM_VERSION=4.1.1
 ARG K3S_VERSION=1.35.1
-ARG KFILT_VERSION=0.0.8
+ARG KFILT_VERSION=1.0.0
 ARG KUBECTL_VERSION=1.35.1
 ARG KUSTOMIZE_VERSION=5.0.1
 ARG S6_OVERLAY_VERSION=3.2.2.0
@@ -46,9 +46,9 @@ RUN apk add --virtual .build-deps \
         -o /usr/local/bin/argocd \
     && curl -fsSL "https://get.helm.sh/helm-v${HELM_VERSION}-linux-${ARCHITECTURE}.tar.gz" \
     | tar xzOf - linux-${ARCHITECTURE}/helm > /usr/local/bin/helm \
-    && curl -fsSL "https://github.com/ryane/kfilt/releases/download/v${KFILT_VERSION}/kfilt_${KFILT_VERSION}_linux_${ARCHITECTURE}" \
+    && curl -fsSL "https://github.com/ryane/kfilt/releases/download/v${KFILT_VERSION}/kfilt_linux_${ARCHITECTURE}" \
         -o /usr/local/bin/kfilt \
-    && curl -fsSL https://dl.k8s.io/v${KUBECTL_VERSION}/kubernetes-client-linux-${ARCHITECTURE}.tar.gz \
+    && curl -fsSL "https://dl.k8s.io/v${KUBECTL_VERSION}/kubernetes-client-linux-${ARCHITECTURE}.tar.gz" \
     | tar xzOf - kubernetes/client/bin/kubectl > /usr/local/bin/kubectl \
     && curl -fsSL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_${ARCHITECTURE}.tar.gz" \
     | tar xzOf - kustomize > /usr/local/bin/kustomize \
@@ -69,13 +69,13 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 HEALTHCHECK CMD kubectl get --raw="/readyz?verbose"
 
-# HTTP
+# Argo CD HTTP
 EXPOSE 80
 
-# HTTPS
+# ARGO CD HTTPS
 EXPOSE 443
 
-# API
+# KUBERNETES API
 EXPOSE 6443
 
 VOLUME /var/lib/docker

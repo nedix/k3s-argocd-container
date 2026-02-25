@@ -68,6 +68,11 @@
       extractVersion: "^v(?<version>.*)$",
     },
     {
+      description: "Custom versioning for kfilt",
+      matchPackageNames: ["ryane/kfilt"],
+      extractVersion: "^v(?<version>.*)$",
+    },
+    {
       description: "Custom versioning for Kustomize",
       matchPackageNames: ["kubernetes-sigs/kustomize"],
       extractVersion: "^v(?<version>.*)$",
